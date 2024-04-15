@@ -1,8 +1,7 @@
 {
-  "name": "next-firebase-starter",
-  "private": true,
+  "name": "team-roster",
   "version": "1.0.0",
-  "author": "Trinity Christiana",
+  "author": "Britnay Gore",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
