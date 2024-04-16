@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Button, FloatingLabel, Form } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 import { useRouter } from 'next/router';
+// import Link from 'next/link';
 import { createMember, updateMember } from '../../api/memberData';
 import { useAuth } from '../../utils/context/authContext';
 
@@ -82,6 +83,11 @@ export default function MemberForm({ obj }) {
       </FloatingLabel>
 
       <Button type="submit">{obj.firebaseKey ? 'Update' : 'Create'} Member</Button>
+      {/* {obj.firebaseKey === 'Update' ? (
+        <Link passHref href="/team">
+          <Button>Back</Button>
+        </Link>
+      ) : ''} */}
     </Form>
   );
 }
