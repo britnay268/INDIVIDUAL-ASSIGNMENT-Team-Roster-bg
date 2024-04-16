@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { Button, FloatingLabel, Form } from 'react-bootstrap';
 import PropTypes from 'prop-types';
+import { useRouter } from 'next/router';
+import { createMember, updateMember } from '../../api/memberData';
+import { useAuth } from '../../utils/context/authContext';
 
 const initialState = {
   name: '',
@@ -10,6 +13,8 @@ const initialState = {
 
 export default function MemberForm({ obj }) {
   const [formInput, setFormInput] = useState(initialState);
+  const { user } = useAuth();
+  const router = useRouter();
 
   useEffect(() => {
     if (obj.firebaseKey) setFormInput(obj);
@@ -23,8 +28,19 @@ export default function MemberForm({ obj }) {
     }));
   };
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const payload = { ...formInput, uid: user.uid };
+    createMember(payload).then(({ name }) => {
+      const patchPayload = { firebaseKey: name };
+      updateMember(patchPayload).then(() => {
+        router.push('/team');
+      });
+    });
+  };
+
   return (
-    <Form>
+    <Form onSubmit={handleSubmit}>
       <h2 className="text-white mt-5">{obj.firebaseKey ? 'Update' : 'Create'} Member</h2>
 
       <FloatingLabel controlId="floatingInput1" label="Enter Your Name" className="mb-3">
@@ -40,8 +56,8 @@ export default function MemberForm({ obj }) {
 
       <FloatingLabel controlId="floatingInput2" label="Add A Picture" className="mb-3">
         <Form.Control
-          type="text"
-          placeholder="Enter a picture"
+          type="url"
+          placeholder="Enter a picture url"
           name="image"
           value={formInput.image}
           onChange={handleChange}
