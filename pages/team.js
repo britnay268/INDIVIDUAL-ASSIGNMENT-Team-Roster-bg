@@ -18,7 +18,7 @@ export default function Team() {
   }, []);
 
   return (
-    <div className="d-flex flex-wrap">
+    <div className="d-flex flex-wrap justify-content-between">
       {members.map((member) => (
         <MemberCard key={member.firebaseKey} memberObj={member} onUpdate={getAllMembers} />
       ))}

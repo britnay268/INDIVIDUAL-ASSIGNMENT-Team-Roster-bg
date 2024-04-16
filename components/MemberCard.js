@@ -12,9 +12,9 @@ export default function MemberCard({ memberObj, onUpdate }) {
   };
 
   return (
-    <Card style={{ width: '18rem', margin: '0 auto' }}>
+    <Card style={{ width: '18rem', margin: '20px 0px' }}>
       <Card.Img variant="top" src={memberObj.image} style={{ height: '300px' }} />
-      <Card.Body style={{ height: '' }}>
+      <Card.Body>
         <Card.Title>{memberObj.name}</Card.Title>
         <p>
           {memberObj.role}
