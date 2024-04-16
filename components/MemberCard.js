@@ -12,7 +12,7 @@ export default function MemberCard({ memberObj }) {
         <p>
           {memberObj.role}
         </p>
-        <Link href="/edit" passHref>
+        <Link href={`/member/edit/${memberObj.firebaseKey}`} passHref>
           <Button variant="info">EDIT</Button>
         </Link>
         <Button variant="danger" className="m-2">
@@ -28,5 +28,6 @@ MemberCard.propTypes = {
     image: PropTypes.string,
     name: PropTypes.string,
     role: PropTypes.string,
+    firebaseKey: PropTypes.string,
   }).isRequired,
 };
