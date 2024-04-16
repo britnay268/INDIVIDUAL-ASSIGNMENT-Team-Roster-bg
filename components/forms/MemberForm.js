@@ -18,7 +18,7 @@ export default function MemberForm({ obj }) {
 
   useEffect(() => {
     if (obj.firebaseKey) setFormInput(obj);
-  }, [obj]);
+  }, [obj, user]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -30,13 +30,18 @@ export default function MemberForm({ obj }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
     const payload = { ...formInput, uid: user.uid };
-    createMember(payload).then(({ name }) => {
-      const patchPayload = { firebaseKey: name };
-      updateMember(patchPayload).then(() => {
-        router.push('/team');
+    if (obj.firebaseKey) {
+      updateMember(payload).then(() => router.push('/team'));
+    } else {
+      createMember(payload).then(({ name }) => {
+        const patchPayload = { firebaseKey: name };
+        updateMember(patchPayload).then(() => {
+          router.push('/team');
+        });
       });
-    });
+    }
   };
 
   return (
@@ -76,7 +81,7 @@ export default function MemberForm({ obj }) {
         />
       </FloatingLabel>
 
-      <Button type="submit">Create Member</Button>
+      <Button type="submit">{obj.firebaseKey ? 'Update' : 'Create'} Member</Button>
     </Form>
   );
 }
