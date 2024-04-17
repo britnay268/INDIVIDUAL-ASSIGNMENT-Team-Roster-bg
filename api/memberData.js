@@ -72,6 +72,17 @@ const updateMember = (payload) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
+const searchMember = async (searchValue, uid) => {
+  const allMembers = getMember(uid);
+
+  const filterMembers = await allMembers.filter((member) => (
+    member.name.toLowerCase().includes(searchValue)
+    || member.role.toLowerCase().includes(searchValue)
+  ));
+
+  return { members: filterMembers };
+};
+
 export {
-  getMember, createMember, getSingleMember, deleteMember, updateMember,
+  getMember, createMember, getSingleMember, deleteMember, updateMember, searchMember,
 };
