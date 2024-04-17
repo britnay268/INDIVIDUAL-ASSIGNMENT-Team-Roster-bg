@@ -71,15 +71,19 @@ export default function MemberForm({ obj }) {
         />
       </FloatingLabel>
 
-      <FloatingLabel controlId="floatingInput3" label="Player or Judge?" className="mb-3">
-        <Form.Control
-          type="text"
-          placeholder="Player or Judge"
+      <FloatingLabel controlId="floatingInput3" label="Role">
+        <Form.Select
+          aria-label="Role"
           name="role"
-          value={formInput.role}
           onChange={handleChange}
+          className="mb-3"
+          value={formInput.role}
           required
-        />
+        >
+          <option value="">Player or Judge?</option>
+          <option value="Player">Player</option>
+          <option value="Judge">Judge</option>
+        </Form.Select>
       </FloatingLabel>
 
       <Button type="submit">{obj.firebaseKey ? 'Update' : 'Create'} Member</Button>
