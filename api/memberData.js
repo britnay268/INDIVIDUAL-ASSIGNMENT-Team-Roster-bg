@@ -73,14 +73,18 @@ const updateMember = (payload) => new Promise((resolve, reject) => {
 });
 
 const searchMember = async (searchValue, uid) => {
-  const allMembers = getMember(uid);
+  const allMembers = await getMember(uid);
 
-  const filterMembers = await allMembers.filter((member) => (
-    member.name.toLowerCase().includes(searchValue)
-    || member.role.toLowerCase().includes(searchValue)
+  // Converts the searchValue to lowercase
+  const lowerCase = searchValue.toLowerCase();
+  const filteredMembers = await allMembers.filter((member) => (
+    // Converts name and role to lowercase to compare it with searchValue
+    member.name.toLowerCase().includes(lowerCase)
+    || member.role.toLowerCase().includes(lowerCase)
   ));
 
-  return { members: filterMembers };
+  // This returns an array of objects
+  return filteredMembers;
 };
 
 export {

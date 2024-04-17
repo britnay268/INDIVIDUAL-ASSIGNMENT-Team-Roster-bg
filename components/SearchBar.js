@@ -23,10 +23,8 @@ export default function SearchBar() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // If the user input is an empty string, push the sarchInput value to the searchValue page
-    if (searchInput !== '') {
-      router.push(`/search/${searchInput}.js`);
-    }
+    // If the user input is not an empty string, push the sarchInput value to the searchValue page
+    if (searchInput !== '') router.push(`/search/${searchInput.search}`);
   };
 
   return (
@@ -41,7 +39,7 @@ export default function SearchBar() {
         // when onChange event handler is triggered, it receives an event object as an argument
         onChange={handleChange}
       />
-      <Button variant="outline-success">Search</Button>
+      <Button variant="outline-success" type="submit">Search</Button>
     </Form>
   );
 }
