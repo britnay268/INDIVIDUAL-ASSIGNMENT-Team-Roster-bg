@@ -9,16 +9,19 @@ function Home() {
       style={{
         height: '90vh',
         padding: '30px',
-        maxWidth: '400px',
         margin: '0 auto',
-        color: 'white',
+        color: 'darkviolet',
+        fontFamily: 'cursive',
       }}
     >
-      <h1>
+      <h3>
         Hey {user.displayName}!
-      </h1>
-      <p>Want to create teams for your upcoming Game Night?</p>
-      <p>You are in the right place!!</p>
+      </h3>
+      <br />
+      <div style={{ color: 'thistle' }}>
+        <h4>Welcome to Game Night Festivities(GNF)!</h4>
+        <p>Want to create teams for your next Game Night? Well, you are in the right place!!</p>
+      </div>
     </div>
   );
 }

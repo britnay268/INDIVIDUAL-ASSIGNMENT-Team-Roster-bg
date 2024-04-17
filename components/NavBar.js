@@ -11,7 +11,7 @@ export default function NavBar() {
     <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
       <Container>
         <Link passHref href="/">
-          <Navbar.Brand>Game Night Festivities</Navbar.Brand>
+          <Navbar.Brand style={{ fontFamily: 'Brush Script MT', fontSize: '30px', color: 'darkviolet' }}>G N F</Navbar.Brand>
         </Link>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
