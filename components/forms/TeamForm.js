@@ -2,6 +2,9 @@ import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import {
   Button, FloatingLabel, Form,
+  FormGroup,
+  ToggleButton,
+  ToggleButtonGroup,
 } from 'react-bootstrap';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
@@ -27,6 +30,13 @@ export default function TeamForm({ obj }) {
     setFormInput((prevState) => ({
       ...prevState,
       [name]: value,
+    }));
+  };
+
+  const handleToggleChange = () => {
+    setFormInput((prevState) => ({
+      ...prevState,
+      private: !prevState.private,
     }));
   };
 
@@ -68,7 +78,21 @@ export default function TeamForm({ obj }) {
         </FloatingLabel>
 
         <div>
-          <Button type="submit">{obj.firebaseKey ? 'Update' : 'Create'} Team</Button>
+          <FormGroup>
+            <Form.Label style={{ color: 'white' }}>Make Team Private or Public</Form.Label>
+          </FormGroup>
+          <ToggleButtonGroup type="checkbox" style={{ marginBottom: '10px' }}>
+            <ToggleButton
+              checked={formInput.private}
+              value={formInput}
+              onClick={handleToggleChange}
+              style={{ backgroundColor: formInput.private ? 'red' : 'green', border: 'none', display: 'block' }}
+            >
+              {formInput.private ? 'Private' : 'Public'}
+            </ToggleButton>
+          </ToggleButtonGroup>
+
+          <Button type="submit" style={{ display: 'block', margin: '0 auto' }}>{obj.firebaseKey ? 'Update' : 'Create'} Team</Button>
         </div>
       </Form>
     </>

@@ -113,7 +113,7 @@ export default function MemberForm({ obj }) {
         </Form.Select>
       </FloatingLabel>
 
-      <Button type="submit">{obj.firebaseKey ? 'Update' : 'Create'} Member</Button>
+      <Button type="submit" style={{ display: 'block', margin: '0 auto' }}>{obj.firebaseKey ? 'Update' : 'Create'} Member</Button>
       {/* {obj.firebaseKey === 'Update' ? (
         <Link passHref href="/team">
           <Button>Back</Button>
