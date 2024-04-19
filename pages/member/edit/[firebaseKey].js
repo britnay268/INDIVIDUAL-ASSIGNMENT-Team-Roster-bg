@@ -7,7 +7,6 @@ export default function EditMember() {
   const [editMember, setEditMember] = useState({});
   const router = useRouter();
 
-  console.warn(router);
   const { firebaseKey } = router.query;
 
   useEffect(() => {
