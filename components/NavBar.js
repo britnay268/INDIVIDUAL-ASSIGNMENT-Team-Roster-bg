@@ -22,10 +22,16 @@ export default function NavBar() {
               <Nav.Link>Home</Nav.Link>
             </Link>
             <Link passHref href="/team">
-              <Nav.Link>Team</Nav.Link>
+              <Nav.Link>Teams</Nav.Link>
+            </Link>
+            <Link passHref href="/member">
+              <Nav.Link>Members</Nav.Link>
+            </Link>
+            <Link passHref href="/team/new">
+              <Nav.Link>New Team</Nav.Link>
             </Link>
             <Link passHref href="/member/new">
-              <Nav.Link>New</Nav.Link>
+              <Nav.Link>New Member</Nav.Link>
             </Link>
             <SearchBar />
             <br />

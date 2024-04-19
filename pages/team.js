@@ -1,27 +1,7 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-import React, { useEffect, useState } from 'react';
-import { getMember } from '../api/memberData';
-import { useAuth } from '../utils/context/authContext';
-import MemberCard from '../components/MemberCard';
+import React from 'react';
 
-export default function Team() {
-  const [members, setMembers] = useState([]);
-
-  const { user } = useAuth();
-
-  const getAllMembers = () => {
-    getMember(user.uid).then(setMembers);
-  };
-
-  useEffect(() => {
-    getAllMembers();
-  }, []);
-
+export default function team() {
   return (
-    <div className="d-flex flex-wrap justify-content-between">
-      {members.map((member) => (
-        <MemberCard key={member.firebaseKey} memberObj={member} onUpdate={getAllMembers} />
-      ))}
-    </div>
+    <h1>Teams go here</h1>
   );
 }
