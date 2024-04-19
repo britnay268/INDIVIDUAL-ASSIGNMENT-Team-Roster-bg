@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import Link from 'next/link';
 import { deleteMember } from '../api/memberData';
 // import getTeamMembers from '../api/teamMemberData';
-import getTeamAndMember from '../api/mergedData';
+import { getTeamAndMember } from '../api/mergedData';
 
 export default function MemberCard({ memberObj, onUpdate }) {
   const [team, setTeam] = useState({});

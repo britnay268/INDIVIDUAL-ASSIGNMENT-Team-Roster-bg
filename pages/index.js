@@ -1,3 +1,4 @@
+import { Button } from 'react-bootstrap';
 import { useAuth } from '../utils/context/authContext';
 
 function Home() {
@@ -21,6 +22,7 @@ function Home() {
       <div style={{ color: 'thistle' }}>
         <h4>Welcome to Game Night Festivities(GNF)!</h4>
         <p>Want to create teams for your next Game Night? Well, you are in the right place!!</p>
+        <Button>Create a Team</Button>
       </div>
     </div>
   );

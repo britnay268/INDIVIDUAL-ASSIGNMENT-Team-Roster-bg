@@ -3,7 +3,7 @@ import { clientCredentials } from '../utils/client';
 const endpoint = clientCredentials.databaseURL;
 
 const getTeamMembers = (teamFirebaseKey) => new Promise((resolve, reject) => {
-  fetch(`${endpoint}/teamMembers.json?orderBy="member_id"&equalTo="${teamFirebaseKey}"`, {
+  fetch(`${endpoint}/teamMembers.json?orderBy="team_id"&equalTo="${teamFirebaseKey}"`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
