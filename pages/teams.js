@@ -20,7 +20,7 @@ export default function ShowTeams() {
   return (
     <div className="d-flex flex-wrap">
       {teams.length === 0 ? <h1 style={{ textAlign: 'center', color: 'white' }}>There are no teams created</h1> : teams.map((team) => (
-        <TeamCard key={team.firebaseKey} teamObj={team} />
+        <TeamCard key={team.firebaseKey} teamObj={team} onUpdate={getAllTeams} />
       ))}
     </div>
   );
