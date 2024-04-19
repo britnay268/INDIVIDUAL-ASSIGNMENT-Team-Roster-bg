@@ -4,6 +4,7 @@ import {
   Button, FloatingLabel, Form,
 } from 'react-bootstrap';
 import { useRouter } from 'next/router';
+import Link from 'next/link';
 import { createTeam, updateTeam } from '../../api/teamData';
 import { useAuth } from '../../utils/context/authContext';
 
@@ -33,33 +34,44 @@ export default function TeamForm({ obj }) {
     e.preventDefault();
 
     const payload = { ...formInput };
-    createTeam(payload).then(({ name }) => {
-      const patchPayload = { firebaseKey: name };
-      updateTeam(patchPayload).then(() => {
-        router.push('/teams');
+    if (obj.firebaseKey) {
+      updateTeam(formInput).then(() => router.push('/teams'));
+    } else {
+      createTeam(payload).then(({ name }) => {
+        const patchPayload = { firebaseKey: name };
+        updateTeam(patchPayload).then(() => {
+          router.push('/teams');
+        });
       });
-    });
+    }
   };
 
   return (
-    <Form onSubmit={handleSubmit}>
-      <h2 className="text-white mt-5">Create Team</h2>
-
-      <FloatingLabel controlId="floatingInput1" label="Team Name" className="mb-3">
-        <Form.Control
-          type="text"
-          placeholder="Enter a team name"
-          name="name"
-          value={formInput.name}
-          onChange={handleChange}
-          required
-        />
-      </FloatingLabel>
-
-      <div>
-        <Button type="submit">Create Team</Button>
+    <>
+      <div className="text-center my-4">
+        <Link href="/teams" passHref>
+          <Button>Back To Teams</Button>
+        </Link>
       </div>
-    </Form>
+      <Form onSubmit={handleSubmit}>
+        <h2 className="text-white mt-5">{obj.firebaseKey ? 'Update' : 'Create'} Team</h2>
+
+        <FloatingLabel controlId="floatingInput1" label="Team Name" className="mb-3">
+          <Form.Control
+            type="text"
+            placeholder="Enter a team name"
+            name="name"
+            value={formInput.name}
+            onChange={handleChange}
+            required
+          />
+        </FloatingLabel>
+
+        <div>
+          <Button type="submit">{obj.firebaseKey ? 'Update' : 'Create'} Team</Button>
+        </div>
+      </Form>
+    </>
   );
 }
 
