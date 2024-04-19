@@ -27,7 +27,7 @@ export default function ViewTeam() {
         </Link>
       </div>
       <div>
-        {teamMembers.members?.map((memberObj) => (
+        {teamMembers.members?.length === 0 ? <h1 style={{ textAlign: 'center', color: 'white' }}>This team has no members</h1> : teamMembers.members?.map((memberObj) => (
           <MemberCard key={memberObj.firebaseKey} memberObj={memberObj} onUpdate={getAllTeamMembers} />
         ))}
       </div>

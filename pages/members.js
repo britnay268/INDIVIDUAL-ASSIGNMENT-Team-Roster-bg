@@ -19,7 +19,7 @@ export default function ShowMembers() {
 
   return (
     <div className="d-flex flex-wrap justify-content-between">
-      {members.map((member) => (
+      {members.length === 0 ? <h1 style={{ textAlign: 'center', color: 'white' }}>There are no members created</h1> : members.map((member) => (
         <MemberCard key={member.firebaseKey} memberObj={member} onUpdate={getAllMembers} />
       ))}
     </div>
