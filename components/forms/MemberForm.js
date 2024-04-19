@@ -5,6 +5,7 @@ import { useRouter } from 'next/router';
 // import Link from 'next/link';
 import { createMember, updateMember } from '../../api/memberData';
 import { useAuth } from '../../utils/context/authContext';
+import { getTeams } from '../../api/teamData';
 
 const initialState = {
   name: '',
@@ -14,10 +15,13 @@ const initialState = {
 
 export default function MemberForm({ obj }) {
   const [formInput, setFormInput] = useState(initialState);
+  const [teams, setTeams] = useState([]);
   const { user } = useAuth();
   const router = useRouter();
 
   useEffect(() => {
+    getTeams(user.uid).then(setTeams);
+
     if (obj.firebaseKey) setFormInput(obj);
   }, [obj, user]);
 
@@ -34,12 +38,12 @@ export default function MemberForm({ obj }) {
 
     const payload = { ...formInput, uid: user.uid };
     if (obj.firebaseKey) {
-      updateMember(payload).then(() => router.push('/team'));
+      updateMember(payload).then(() => router.push('/members'));
     } else {
       createMember(payload).then(({ name }) => {
         const patchPayload = { firebaseKey: name };
         updateMember(patchPayload).then(() => {
-          router.push('/team');
+          router.push('/members');
         });
       });
     }
@@ -86,6 +90,29 @@ export default function MemberForm({ obj }) {
         </Form.Select>
       </FloatingLabel>
 
+      <FloatingLabel controlId="floatingSelect" label="Author">
+        <Form.Select
+          aria-label="Author"
+          name="team_id"
+          onChange={handleChange}
+          className="mb-3"
+          value={obj.team_id}
+          required
+        >
+          <option value="">Select a Team</option>
+          {
+            teams.map((team) => (
+              <option
+                key={team.firebaseKey}
+                value={team.firebaseKey}
+              >
+                {team.name}
+              </option>
+            ))
+          }
+        </Form.Select>
+      </FloatingLabel>
+
       <Button type="submit">{obj.firebaseKey ? 'Update' : 'Create'} Member</Button>
       {/* {obj.firebaseKey === 'Update' ? (
         <Link passHref href="/team">
@@ -102,6 +129,7 @@ MemberForm.propTypes = {
     image: PropTypes.string,
     role: PropTypes.string,
     firebaseKey: PropTypes.string,
+    team_id: PropTypes.string,
   }),
 };
 
