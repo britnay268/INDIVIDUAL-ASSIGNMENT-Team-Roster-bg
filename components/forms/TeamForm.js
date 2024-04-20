@@ -64,11 +64,6 @@ export default function TeamForm({ obj }) {
 
   return (
     <>
-      <div className="text-center my-4">
-        <Link href="/teams" passHref>
-          <Button>Back To Teams</Button>
-        </Link>
-      </div>
       <Form onSubmit={handleSubmit}>
         <h2 className="text-white mt-5">{obj.firebaseKey ? 'Update' : 'Create'} Team</h2>
 
@@ -98,7 +93,12 @@ export default function TeamForm({ obj }) {
             </ToggleButton>
           </ToggleButtonGroup>
 
-          <Button type="submit" style={{ display: 'block', margin: '0 auto' }}>{obj.firebaseKey ? 'Update' : 'Create'} Team</Button>
+          <div className="text-center my-4">
+            <Button type="submit" style={{ marginRight: '20px' }}>{obj.firebaseKey ? 'Update' : 'Create'} Team</Button>
+            <Link href="/teams" passHref>
+              <Button style={{ backgroundColor: 'darkviolet', border: 'darkviolet' }}>Back To Teams</Button>
+            </Link>
+          </div>
         </div>
       </Form>
     </>

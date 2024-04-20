@@ -3,6 +3,7 @@ import { Button, FloatingLabel, Form } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 import { useRouter } from 'next/router';
 // import Link from 'next/link';
+import Link from 'next/link';
 import { createMember, updateMember } from '../../api/memberData';
 import { useAuth } from '../../utils/context/authContext';
 import { getTeams } from '../../api/teamData';
@@ -113,12 +114,12 @@ export default function MemberForm({ obj }) {
         </Form.Select>
       </FloatingLabel>
 
-      <Button type="submit" style={{ display: 'block', margin: '0 auto' }}>{obj.firebaseKey ? 'Update' : 'Create'} Member</Button>
-      {/* {obj.firebaseKey === 'Update' ? (
-        <Link passHref href="/team">
-          <Button>Back</Button>
+      <div className="text-center my-4">
+        <Button type="submit" style={{ marginRight: '20px' }}>{obj.firebaseKey ? 'Update' : 'Create'} Member</Button>
+        <Link href="/members" passHref>
+          <Button style={{ backgroundColor: 'darkviolet', border: 'darkviolet' }}>Back To Members</Button>
         </Link>
-      ) : ''} */}
+      </div>
     </Form>
   );
 }
