@@ -22,7 +22,7 @@ function Signin() {
           <h6>Want to create teams for your next Game Night? Well, you are in the right place!!</h6>
           <p>Click the button below to get started!</p>
         </div>
-        <Button type="button" size="lg" className="copy-btn" onClick={signIn}>
+        <Button type="button" size="lg" className="copy-btn" onClick={signIn} style={{ maxWidth: '300px', margin: '0px auto' }}>
           Sign In
         </Button>
       </div>
