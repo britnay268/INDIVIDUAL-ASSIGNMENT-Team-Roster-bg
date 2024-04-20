@@ -12,26 +12,25 @@ export default function NavBar() {
     <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
       <Container>
         <Link passHref href="/">
-          <Navbar.Brand style={{ fontFamily: 'Brush Script MT', fontSize: '30px', color: 'darkviolet' }}>G N F</Navbar.Brand>
+          <Navbar.Brand style={{ fontFamily: 'Luminari', fontSize: '30px', color: 'darkviolet' }}>GNF</Navbar.Brand>
         </Link>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto">
-            {/* CLOSE NAVBAR ON LINK SELECTION: https://stackoverflow.com/questions/72813635/collapse-on-select-react-bootstrap-navbar-with-nextjs-not-working */}
             <Link passHref href="/">
               <Nav.Link>Home</Nav.Link>
             </Link>
             <Link passHref href="/teams">
               <Nav.Link>Teams</Nav.Link>
             </Link>
-            <Link passHref href="/members">
-              <Nav.Link>Members</Nav.Link>
-            </Link>
             <Link passHref href="/team/new">
-              <Nav.Link>New Team</Nav.Link>
+              <Nav.Link>Add Team</Nav.Link>
+            </Link>
+            <Link passHref href="/members">
+              <Nav.Link>Players</Nav.Link>
             </Link>
             <Link passHref href="/member/new">
-              <Nav.Link>New Member</Nav.Link>
+              <Nav.Link>Add Player</Nav.Link>
             </Link>
             <SearchBar />
             <br />

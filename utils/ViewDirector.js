@@ -3,6 +3,7 @@ import { useAuth } from './context/authContext';
 import Loading from '../components/Loading';
 import Signin from '../components/Signin';
 import NavBar from '../components/NavBar';
+import Header from '../components/Header';
 
 const ViewDirectorBasedOnUserAuthStatus = ({ component: Component, pageProps }) => {
   const { user, userLoading } = useAuth();
@@ -16,6 +17,7 @@ const ViewDirectorBasedOnUserAuthStatus = ({ component: Component, pageProps }) 
   if (user) {
     return (
       <>
+        <Header />
         <NavBar /> {/* NavBar only visible if user is logged in and is in every view */}
         <div className="container">
           <Component {...pageProps} />

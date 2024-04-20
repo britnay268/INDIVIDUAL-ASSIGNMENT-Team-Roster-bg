@@ -30,7 +30,7 @@ export default function MemberCard({ memberObj, onUpdate }) {
         <p>
           {memberObj.role}
         </p>
-        <p>{team.teams?.name}</p>
+        <p>Team: {team.teams?.name}</p>
         {memberObj.uid === user.uid ? (
           <Link href={`/member/edit/${memberObj.firebaseKey}`} passHref>
             <Button variant="info">EDIT</Button>
