@@ -87,6 +87,18 @@ const searchMember = async (searchValue, uid) => {
   return filteredMembers;
 };
 
+const getTeamMembers = (firebaseKey) => new Promise((resolve, reject) => {
+  fetch(`${endpoint}/members.json?orderBy="team_id"&equalTo="${firebaseKey}"`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+    .then((response) => response.json())
+    .then((data) => resolve(Object.values(data)))
+    .catch(reject);
+});
+
 export {
-  getMembers, createMember, getSingleMember, deleteMember, updateMember, searchMember,
+  getMembers, createMember, getSingleMember, deleteMember, updateMember, searchMember, getTeamMembers,
 };

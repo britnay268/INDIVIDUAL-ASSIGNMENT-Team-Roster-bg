@@ -2,6 +2,9 @@ import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import {
   Button, FloatingLabel, Form,
+  FormGroup,
+  ToggleButton,
+  ToggleButtonGroup,
 } from 'react-bootstrap';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
@@ -23,10 +26,23 @@ export default function TeamForm({ obj }) {
   }, [obj]);
 
   const handleChange = (e) => {
+    // Destructuring name and value from the event
     const { name, value } = e.target;
+    // prevState is what already exists
+    setFormInput((prevState) => ({
+      // This makes a copy of everything in formInpput
+      ...prevState,
+      // Adds a new key.value pair with the name and value gathered from the event target
+      [name]: value,
+      // Then updates formInput with new information
+    }));
+  };
+
+  const handleToggleChange = () => {
     setFormInput((prevState) => ({
       ...prevState,
-      [name]: value,
+      // this updates the private property in formInput by using ! to toggle the value meaning if it was true, then it becomes false and vice versa.
+      private: !prevState.private,
     }));
   };
 
@@ -68,7 +84,21 @@ export default function TeamForm({ obj }) {
         </FloatingLabel>
 
         <div>
-          <Button type="submit">{obj.firebaseKey ? 'Update' : 'Create'} Team</Button>
+          <FormGroup>
+            <Form.Label style={{ color: 'white' }}>Make Team Private or Public</Form.Label>
+          </FormGroup>
+          <ToggleButtonGroup type="checkbox" style={{ marginBottom: '10px' }}>
+            <ToggleButton
+              checked={formInput.private}
+              value={formInput}
+              onClick={handleToggleChange}
+              style={{ backgroundColor: formInput.private ? 'red' : 'green', border: 'none', display: 'block' }}
+            >
+              {formInput.private ? 'Private' : 'Public'}
+            </ToggleButton>
+          </ToggleButtonGroup>
+
+          <Button type="submit" style={{ display: 'block', margin: '0 auto' }}>{obj.firebaseKey ? 'Update' : 'Create'} Team</Button>
         </div>
       </Form>
     </>

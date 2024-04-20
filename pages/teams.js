@@ -1,8 +1,9 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from 'react';
 import { useAuth } from '../utils/context/authContext';
-import { getTeams } from '../api/teamData';
+// import { getTeams } from '../api/teamData';
 import TeamCard from '../components/TeamCard';
+import { getPublicTeams } from '../api/teamData';
 
 export default function ShowTeams() {
   const [teams, setTeams] = useState([]);
@@ -10,7 +11,7 @@ export default function ShowTeams() {
   const { user } = useAuth();
 
   const getAllTeams = () => {
-    getTeams(user.uid).then(setTeams);
+    getPublicTeams(user.uid).then(setTeams);
   };
 
   useEffect(() => {
