@@ -4,11 +4,12 @@ import { Button, Card } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 import Link from 'next/link';
 import { deleteMember } from '../api/memberData';
-// import getTeamMembers from '../api/teamMemberData';
 import { getTeamAndMember } from '../api/mergedData';
+import { useAuth } from '../utils/context/authContext';
 
 export default function MemberCard({ memberObj, onUpdate }) {
   const [team, setTeam] = useState({});
+  const { user } = useAuth();
   const deleteTheMember = () => {
     if (window.confirm(`Sure you want to delete ${memberObj.name}?`)) {
       deleteMember(memberObj.firebaseKey).then(() => onUpdate());
@@ -30,12 +31,18 @@ export default function MemberCard({ memberObj, onUpdate }) {
           {memberObj.role}
         </p>
         <p>{team.teams?.name}</p>
-        <Link href={`/member/edit/${memberObj.firebaseKey}`} passHref>
-          <Button variant="info">EDIT</Button>
-        </Link>
-        <Button variant="danger" className="m-2" onClick={deleteTheMember}>
-          DELETE
-        </Button>
+        {memberObj.uid === user.uid ? (
+          <Link href={`/member/edit/${memberObj.firebaseKey}`} passHref>
+            <Button variant="info">EDIT</Button>
+          </Link>
+        ) : ''}
+
+        {memberObj.uid === user.uid ? (
+          <Button variant="danger" className="m-2" onClick={deleteTheMember}>
+            DELETE
+          </Button>
+        ) : ''}
+
       </Card.Body>
     </Card>
   );
@@ -47,6 +54,7 @@ MemberCard.propTypes = {
     name: PropTypes.string,
     role: PropTypes.string,
     firebaseKey: PropTypes.string,
+    uid: PropTypes.string,
   }).isRequired,
   onUpdate: PropTypes.func.isRequired,
 };

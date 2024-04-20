@@ -72,6 +72,26 @@ const updateTeam = (payload) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
+const getPublicTeams = (uid) => new Promise((resolve, reject) => {
+  fetch(`${endpoint}/teams.json`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      if (data) {
+        const allTeams = Object.values(data);
+        const publicTeams = allTeams.filter((team) => team.uid === uid || team.private === false);
+        resolve(publicTeams);
+      } else {
+        resolve([]);
+      }
+    })
+    .catch(reject);
+});
+
 export {
-  getTeams, createTeam, getSingleTeam, deleteTeam, updateTeam,
+  getTeams, createTeam, getSingleTeam, deleteTeam, updateTeam, getPublicTeams,
 };

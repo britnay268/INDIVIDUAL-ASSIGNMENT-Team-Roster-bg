@@ -26,16 +26,22 @@ export default function TeamForm({ obj }) {
   }, [obj]);
 
   const handleChange = (e) => {
+    // Destructuring name and value from the event
     const { name, value } = e.target;
+    // prevState is what already exists
     setFormInput((prevState) => ({
+      // This makes a copy of everything in formInpput
       ...prevState,
+      // Adds a new key.value pair with the name and value gathered from the event target
       [name]: value,
+      // Then updates formInput with new information
     }));
   };
 
   const handleToggleChange = () => {
     setFormInput((prevState) => ({
       ...prevState,
+      // this updates the private property in formInput by using ! to toggle the value meaning if it was true, then it becomes false and vice versa.
       private: !prevState.private,
     }));
   };

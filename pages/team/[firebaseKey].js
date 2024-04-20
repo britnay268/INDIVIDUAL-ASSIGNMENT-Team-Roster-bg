@@ -17,7 +17,7 @@ export default function ViewTeam() {
 
   useEffect(() => {
     getAllTeamMembers();
-  }, []);
+  }, [firebaseKey]);
 
   return (
     <>
