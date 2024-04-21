@@ -1,6 +1,7 @@
 # GNF - Game Night Festivities [![Netlify Status](https://api.netlify.com/api/v1/badges/da905005-3a8b-4a7b-8ed0-1d1d8943c176/deploy-status)](https://app.netlify.com/sites/gamenightfestives/deploys)
 
 <img width="1148" alt="Your Alt" src="images/Login-Page.png">
+
 [Click Here to Access App](https://gamenightfestives.netlify.app/)
 
 ## App Overview
