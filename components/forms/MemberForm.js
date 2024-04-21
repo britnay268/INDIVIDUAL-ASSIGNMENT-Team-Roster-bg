@@ -93,14 +93,14 @@ export default function MemberForm({ obj }) {
 
       <FloatingLabel controlId="floatingSelect" label="Author">
         <Form.Select
-          aria-label="Author"
+          aria-label="Team"
           name="team_id"
           onChange={handleChange}
           className="mb-3"
           value={obj.team_id}
-          required
         >
           <option value="">Select a Team</option>
+          <option value="">No Team</option>
           {
             teams.map((team) => (
               <option
