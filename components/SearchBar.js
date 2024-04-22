@@ -39,7 +39,7 @@ export default function SearchBar() {
         // when onChange event handler is triggered, it receives an event object as an argument
         onChange={handleChange}
       />
-      <Button variant="outline-success" type="submit">Search</Button>
+      <Button variant="outline-success" type="submit" style={{ marginRight: '10px' }}>Search</Button>
     </Form>
   );
 }
