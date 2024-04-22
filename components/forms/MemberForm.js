@@ -91,7 +91,7 @@ export default function MemberForm({ obj }) {
         </Form.Select>
       </FloatingLabel>
 
-      <FloatingLabel controlId="floatingSelect" label="Author">
+      <FloatingLabel controlId="floatingSelect" label="Team">
         <Form.Select
           aria-label="Team"
           name="team_id"
